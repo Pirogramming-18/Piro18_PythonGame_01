@@ -65,28 +65,34 @@ def drawingLots31(loser31):
 
 
 
-def game31End(card_sum31, entry):
+def game31End(card_sum31,prod):
+  
   min_sum31 = min(card_sum31)
 
-  loser31 = [i for i in range(len(entry)) if card_sum31[i] == min_sum31]
+  print(card_sum31)
 
+  loser31 = [i for i in range(len(prod)) if card_sum31[i] == min_sum31]
+
+  print(loser31)
+  
   if len(loser31) == 1:
-    gameOver31(entry[loser31[0]])
+    gameOver31(prod[loser31[0]])
 
   else:
     print("동점자가 있기 때문에 제비뽑기를 진행하겠습니다.")
     idx = drawingLots31(loser31)
-    print(f'{entry[loser31[idx]]}님이 꽝을 뽑았습니다!')
+    print(f'{prod[loser31[idx]]}님이 꽝을 뽑았습니다!')
     
-    gameOver31(entry[loser31[idx]])
+    gameOver31(prod[loser31[idx]])
   
-  return entry[loser31[idx]]
+  return prod[loser31[idx]]
 
 
 
 def game31 (entry, player31): #참가자 명단
-
+  entry = entry
   game31Intro()
+  print(entry)
 
   card_deck31 = []
   card_sum31 = [0]*len(entry)
@@ -97,15 +103,15 @@ def game31 (entry, player31): #참가자 명단
   card_deck31 = cardGenerator31(card_deck31)
   
     
-  for i in range(25):
+  for i in range(24):
     
-    if (retire31[i%3] == 1):
+    if (retire31[i%len(entry)] == 1):
       continue
     else:
-      print(f'{entry[i%3]}님의 차례입니다')
+      print(f'{entry[i%len(entry)]}님의 차례입니다')
     
     time.sleep(0.5)
-    if (entry[i%3] == player31):
+    if (entry[i%len(entry)] == player31):
 
       while 1:
         choice31 = input("카드를 더 뽑으시겠습니까? (y/n) :").strip()
@@ -116,7 +122,7 @@ def game31 (entry, player31): #참가자 명단
 
         elif (choice31 == "n"):
           print(f'{player31} : fold.')
-          retire31[i%3] = 1
+          retire31[i%len(entry)] = 1
           print()
           break
 
@@ -126,33 +132,33 @@ def game31 (entry, player31): #참가자 명단
     
     else:
       
-      if card_sum31[i%3] <= 25:
-        print(f'{entry[i%3]} : call!')
+      if card_sum31[i%len(entry)] <= 25:
+        print(f'{entry[i%len(entry)]} : call!')
       else:
         choice = random.choice([True, False])
         if choice:
-          print(f'{entry[i%3]} : call!')
+          print(f'{entry[i%len(entry)]} : call!')
         else:
-          print(f'{entry[i%3]} : fold.')
-          retire31[i%3] = 1
+          print(f'{entry[i%len(entry)]} : fold.')
+          retire31[i%len(entry)] = 1
 
-    if (retire31[i%3] == 1):
+    if (retire31[i%len(entry)] == 1):
       continue
 
     time.sleep(0.5)
 
     picked_card31 = card_deck31.pop()
-    print(f'{entry[i%3]}님이 뽑은 카드는 {picked_card31}입니다.')
+    print(f'{entry[i%len(entry)]}님이 뽑은 카드는 {picked_card31}입니다.')
 
-    card_sum31[i%3] += picked_card31
+    card_sum31[i%len(entry)] += picked_card31
 
     time.sleep(0.5)
-    if (card_sum31[i%3] > 31):
-      print(f'{entry[i%3]}님의 카드 합계가 31이 넘었습니다!')
-      gameOver31(entry[i%3])
-      return
+    if (card_sum31[i%3] > 1):
+      print(f'{entry[i%len(entry)]}님의 카드 합계가 31이 넘었습니다!')
+      gameOver31(entry[i%len(entry)])
+      return entry[i%len(entry)]
     else:
-      print(f"현재 {entry[i%3]}님이 소지한 카드의 합은 {card_sum31[i%3]}입니다")
+      print(f"현재 {entry[i%len(entry)]}님이 소지한 카드의 합은 {card_sum31[i%len(entry)]}입니다")
     print()
   
   
