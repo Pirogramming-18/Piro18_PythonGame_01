@@ -40,13 +40,12 @@ def grape_game(dictionary_player):
 
             if grape_current < 0 or grape_current > 5:
                 print(f"{player[-1]} 원샷")
-                dictionary_player[player[-1]][1] -= 1
                 active = False
                 break
             else:
                 active = True
 
-    return dictionary_player
+    return player[-1]
 
 
 print(grape_game(dictionary))
