@@ -11,7 +11,6 @@ import time
 
 def game31Intro():
 
-
   print("=============================================================")
   print()
   print("⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤")
@@ -24,9 +23,6 @@ def game31Intro():
   print()
   print("=============================================================")
   
-
-
-
 def cardGenerator31(card_deck31):
 
   for i in range(1, 7):
@@ -37,9 +33,6 @@ def cardGenerator31(card_deck31):
 
   return card_deck31
 
-
-
-
 def gameOver31 (loser31):
 
   print(f"{loser31} Lose!")
@@ -48,11 +41,6 @@ def gameOver31 (loser31):
   print("            █▀▀ ▄▀█ █▀▄▀█ █▀▀   █▀█ █░█ █▀▀ █▀█         ")
   print("            █▄█ █▀█ █░▀░█ ██▄   █▄█ ▀▄▀ ██▄ █▀▄         ")
   
-
-
-
-
-
 def drawingLots31(loser31):
   
   raffle31 = [""]*(len(loser31)-1) + ["꽝"]
@@ -63,43 +51,32 @@ def drawingLots31(loser31):
     if (raffle31[i] == '꽝'):
       return i
 
-
-
-def game31End(card_sum31,prod):
-  
+def game31End(card_sum31, entry):
   min_sum31 = min(card_sum31)
 
-  print(card_sum31)
-
-  loser31 = [i for i in range(len(prod)) if card_sum31[i] == min_sum31]
-
-  print(loser31)
-  
+  loser31 = [i for i in range(len(entry)) if card_sum31[i] == min_sum31]
   if len(loser31) == 1:
-    gameOver31(prod[loser31[0]])
+    gameOver31(entry[loser31[0]])
+
+    return entry[loser31[0]]
 
   else:
     print("동점자가 있기 때문에 제비뽑기를 진행하겠습니다.")
     idx = drawingLots31(loser31)
-    print(f'{prod[loser31[idx]]}님이 꽝을 뽑았습니다!')
+    print(f'{entry[loser31[idx]]}님이 꽝을 뽑았습니다!')
     
-    gameOver31(prod[loser31[idx]])
-  
-  return prod[loser31[idx]]
+    gameOver31(entry[loser31[idx]])
+    return entry[loser31[idx]]
 
 
 
 def game31 (entry, player31): #참가자 명단
-  entry = entry
   game31Intro()
-  print(entry)
 
   card_deck31 = []
   card_sum31 = [0]*len(entry)
   retire31 = [0]*len(entry)
   
-
-
   card_deck31 = cardGenerator31(card_deck31)
   
     
@@ -131,7 +108,6 @@ def game31 (entry, player31): #참가자 명단
           continue
     
     else:
-      
       if card_sum31[i%len(entry)] <= 25:
         print(f'{entry[i%len(entry)]} : call!')
       else:
@@ -153,14 +129,14 @@ def game31 (entry, player31): #참가자 명단
     card_sum31[i%len(entry)] += picked_card31
 
     time.sleep(0.5)
-    if (card_sum31[i%3] > 1):
+    if (card_sum31[i%len(entry)] > 6):
       print(f'{entry[i%len(entry)]}님의 카드 합계가 31이 넘었습니다!')
       gameOver31(entry[i%len(entry)])
       return entry[i%len(entry)]
     else:
       print(f"현재 {entry[i%len(entry)]}님이 소지한 카드의 합은 {card_sum31[i%len(entry)]}입니다")
     print()
+  loser = game31End(card_sum31, entry)
+  return loser
   
-  
-  game31End(card_sum31, entry)
 
