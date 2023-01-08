@@ -1,8 +1,8 @@
 import random
 import paik
-
+import bunny
 # {name : [마신 잔 수, 치사량, 게임 시작 여부]}
-data = {"김용현" : [0, 5, True], "김고은" : [0, 5, True], "한수현" : [0, 5, True], "송현지" : [0, 5, True], "김태영" : [0, 5, True]}
+data = {"용현" : [0, 5, True], "고은" : [0, 5, True], "수현" : [0, 5, True], "현지" : [0, 5, True], "태영" : [0, 5, True]}
 
 #프로그램 실행 시 인트로 출력 함수
 def intro():
@@ -163,7 +163,14 @@ def main():
         if(menuNum == 1):
             paik.game(player, users)
         elif(menuNum == 2):
-            pass
+            loser = bunny.game(player, list(users.keys()))
+            print(loser)
+            for lose in loser:
+                for user in users:                
+                    if(user == lose):
+                        if(users[user][0] < users[user][1]):                    
+                            users[user][0] += 1
+                        
         elif(menuNum == 3):
             pass
         elif(menuNum == 4):
