@@ -12,21 +12,43 @@ def grape_game(dictionary_player, user):
     print(list_player)  # 삭제
     n = len(list_player)
     player = []
-    print('포도 게임 포도 게임 ')
+    print('🍇포도 게임~~ 포도 게임~~ 🍇')
     grape_bunch = 5
     grape_current = 0
 
     active = True
     while active:
         for i in range(0, n):
-            grape = random.randint(1, 3)
-            eat = random. randint(1, 3)
-            if eat == 1 or eat == 2:
-                grape_current += grape
-                eat = '먹고'
+            if user == list_player[i]:
+                while True:
+                    grape = input('한알 두알 세알 중 선택하세요(1,2,3 중 선택): ')
+                    if grape == '1' or grape == '2' or grape == '3':
+                        grape = int(grape)
+                        break
+                    else:
+                        print('다시 입력하세요')
+
+                while True:
+                    eat = input('먹고 빼고 중에 선택하세요 : ')
+                    if eat == '먹고' or eat == '빼고':
+                        break
+                    else:
+                        print("다시 입력하세요")
+
+                if eat == '먹고':
+                    grape_current += grape
+                elif eat == '빼고':
+                    grape_current -= grape
+
             else:
-                grape_current -= grape
-                eat = '빼고'
+                grape = random.randint(1, 3)
+                eat = random. randint(1, 3)
+                if eat == 1 or eat == 2:
+                    grape_current += grape
+                    eat = '먹고'
+                else:
+                    grape_current -= grape
+                    eat = '빼고'
 
             if grape_current == 5:
                 if list_player[i] == user:
