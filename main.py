@@ -1,6 +1,8 @@
 import random
 import paik
 import bunny
+import game31
+import grapeGame
 # {name : [마신 잔 수, 치사량, 게임 시작 여부]}
 data = {"용현" : [0, 5, True], "고은" : [0, 5, True], "수현" : [0, 5, True], "현지" : [0, 5, True], "태영" : [0, 5, True]}
 
@@ -51,17 +53,22 @@ def selectFriend(player):
 # 선택한 메뉴 번호 반환
 def selectGame(cur, player):
     showGameMenu()
-    exit = input(f"술게임 진행 중! {cur}님의 턴 입니다! 그만하고 싶으면 \'exit\'을, 계속하고 싶으면 아무키나 입력해 주세요! : ")
-    if(exit == "exit"):
-        return True, -1
-    try:
-        menu = int(input(f"{cur}(이)가 좋아하는 랜덤 게임~ 무슨 게임~? : "))   
-        if(menu > 5 or menu < 1):
-            raise ValueError
-        
-        return False, menu
-    except ValueError:
-        print("1~5 사이의 정수를 입력해주세요!")
+    while True:
+        exit = input(f"술게임 진행 중! {cur}님의 턴 입니다! 그만하고 싶으면 \'exit\'을, 계속하고 싶으면 아무키나 입력해 주세요! : ")
+        if(exit == "exit"):
+            return True, -1
+        try:
+            menu = int(input(f"{cur}(이)가 좋아하는 랜덤 게임~ 무슨 게임~? : "))   
+            if(len(menu) == 0):
+                continue
+                
+            if(menu > 5 or menu < 1):
+                raise ValueError
+            
+            return False, menu
+        except ValueError:
+            print("1~5 사이의 정수를 입력해주세요!")
+            
                
 # 유저 상태 체크 함수
 # 현재 유저들의 상태를 출력하고 치사량 == 마신 잔 수가 된 유저가 있는지 검증
@@ -172,9 +179,13 @@ def main():
                             users[user][0] += 1
                         
         elif(menuNum == 3):
-            pass
+            loser = game31.game31(list(users.keys()), player)            
+            if(users[loser][0] < users[loser][1]):                    
+                users[loser][0] += 1
         elif(menuNum == 4):
-            pass
+            loser = grapeGame.grape_game(users, player)
+            if(users[loser][0] < users[loser][1]):
+                users[loser][0] += 1        
         elif(menuNum == 5):
             pass
         
