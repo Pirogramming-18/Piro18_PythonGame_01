@@ -6,7 +6,7 @@ dictionary = {'고은': [7, 7], '용현': [6, 6],
               '태영': [5, 5], '수현': [5, 5], '현지': [4, 4]}
 
 
-def grape_game(dictionary_player):
+def grape_game(dictionary_player, user):
     list_player = list(dictionary_player.keys())
     random.shuffle(list_player)
     print(list_player)
@@ -29,13 +29,24 @@ def grape_game(dictionary_player):
                 eat = '빼고'
 
             if grape_current == 5:
-                print(f"{list_player[i]} : 포도 {grape}알 {eat} {grape_current}")
+                if list_player[i] == user:
+                    print(
+                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} {grape_current}")
+                else:
+                    print(
+                        f"{list_player[i]}  : 포도 {grape}알 {eat} {grape_current}")
                 print("다먹었네")
                 player.append(list_player[i])
                 grape_current = 0
 
             else:
-                print(f"{list_player[i]} : 포도 {grape}알 {eat} {grape_current}")
+                if list_player[i] == user:
+                    print(
+                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} {grape_current}")
+                else:
+                    print(
+                        f"{list_player[i]}  : 포도 {grape}알 {eat} {grape_current}")
+
                 player.append(list_player[i])
 
             if grape_current < 0 or grape_current > 5:
@@ -48,4 +59,4 @@ def grape_game(dictionary_player):
     return player[-1]
 
 
-print(grape_game(dictionary))
+print(grape_game(dictionary, '현지'))
