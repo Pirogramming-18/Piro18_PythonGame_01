@@ -133,8 +133,9 @@ def game31 (entry, player31): #참가자 명단
     card_sum31[i%num31] += picked_card31
 
     time.sleep(0.5)
-    if (card_sum31[i%num31] > 6):
-      print(f'{entry[i%num31]}님의 카드 합계가 31이 넘었습니다!')
+    limitNumber = 31
+    if (card_sum31[i%num31] > limitNumber):
+      print(f'{entry[i%num31]}님의 카드 합계가 {limitNumber}이 넘었습니다!')
       gameOver31(entry[i%num31])
       return entry[i%num31]
     else:
