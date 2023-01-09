@@ -38,9 +38,11 @@ def Intro2():
 
 p_list = ['수현','용현','태영','현지']
 user = 'user'
+loser_list = []
 
 def minigame_guess(p_list):
     Intro2()
+    global loser_list
     chance_count = 0
     num = randrange(1, 10, 1)
 
@@ -68,8 +70,10 @@ def minigame_guess(p_list):
             print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
             print('정답은', num)
             #주량을 -1 해줘야 합니다
-            #user[i].hmcd -= 1
+            #user[i] -= 1
+            loser_list.append(user)
             break
+
         else:
           print('범위에 맞는 정수를 입력해주세요.', end=' ')
       else:
@@ -101,7 +105,11 @@ def minigame_guess(p_list):
           print('**********************************************************************') 
           #주량에서 -1
           #plist[i].hmcd -= 1
-          return loser
+          loser_list.append(p_list[i])
+
+    return loser_list
+          
 
 
-minigame_guess(p_list)         
+minigame_guess(p_list)  
+
