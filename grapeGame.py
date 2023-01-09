@@ -83,4 +83,4 @@ def grape_game(dictionary_player, user):
     return player[-1]
 
 
-print(grape_game(dictionary, '현지'))
+# print(grape_game(dictionary, '현지'))
