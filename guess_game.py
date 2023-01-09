@@ -40,13 +40,15 @@ p_list = ['수현','용현','태영','현지']
 user = 'user'
 loser_list = []
 
-def minigame_guess(p_list):
+def minigame_guess(cur, p_list):
     Intro2()
     global loser_list
+    global user
     chance_count = 0
     num = randrange(1, 10, 1)
-
+    user = cur
     shuffle(p_list)
+    print("p_list", p_list)
 
     #사용자 실행
     while True:
@@ -110,6 +112,6 @@ def minigame_guess(p_list):
     return loser_list
           
 
-
-minigame_guess(p_list)  
+if __name__ == "__main__":
+  minigame_guess(p_list)  
 

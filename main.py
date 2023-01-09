@@ -3,6 +3,7 @@ import paik
 import bunny
 import game31
 import grapeGame
+import guess_game
 # {name : [마신 잔 수, 치사량, 게임 시작 여부]}
 data = {"용현" : [0, 5, True], "고은" : [0, 5, True], "수현" : [0, 5, True], "현지" : [0, 5, True], "태영" : [0, 5, True]}
 
@@ -60,7 +61,6 @@ def selectGame(cur, player):
         try:
             menu = int(input(f"{cur}(이)가 좋아하는 랜덤 게임~ 무슨 게임~? : "))   
             
-                
             if(menu > 5 or menu < 1):
                 raise ValueError
             
@@ -125,11 +125,11 @@ def showStatus(users):
 # 게임 선택 메뉴 화면
 def showGameMenu():
     print("~~~~~~~~~~~~~~~~~~🍻[오늘의 술 게임]🍻~~~~~~~~~~~~~~~~~~")
-    print("                        1. game1")
-    print("                        2. game2")
-    print("                        3. game3")
-    print("                        4. game4")
-    print("                        5. game5")
+    print("                        1. 백종원 게임")
+    print("                        2. 바니바니 게임")
+    print("                        3. 베스킨라빈스 31 게임")
+    print("                        4. 포도 게임")
+    print("                        5. 병뚜겅 게임")
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # 게임 종료 화면
@@ -186,7 +186,8 @@ def main():
             if(users[loser][0] < users[loser][1]):
                 users[loser][0] += 1        
         elif(menuNum == 5):
-            pass
+            losers = guess_game.minigame_guess(player, list(users.keys()))
+            print(losers)
         
         if(checkStatus(users)):
             break
