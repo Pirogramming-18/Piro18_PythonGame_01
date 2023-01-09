@@ -9,7 +9,15 @@ data = {"용현" : [0, 5, True], "고은" : [0, 5, True], "수현" : [0, 5, True
 
 #프로그램 실행 시 인트로 출력 함수
 def intro():
-    pass
+    print("""
+    __  __                           _   __                __  __               
+   / / / ____ _____  ____  __  __   / | / ___ _      __    \ \/ ___  ____ ______
+  / /_/ / __ `/ __ \/ __ \/ / / /  /  |/ / _ | | /| / /     \  / _ \/ __ `/ ___/
+ / __  / /_/ / /_/ / /_/ / /_/ /  / /|  /  __| |/ |/ /      / /  __/ /_/ / /    
+/_/ /_/\__,_/ .___/ .___/\__, /  /_/ |_/\___/|__/|__/      /_/\___/\__,_/_/     
+           /_/   /_/    /____/                                                  
+           
+""")
 
 # 주량 선택 함수
 # 메뉴 번호 입력 시 해당 번호에 해당하는 주량 숫자 반환
@@ -169,8 +177,7 @@ def main():
         if(menuNum == 1):
             paik.game(player, users)
         elif(menuNum == 2):
-            loser = bunny.game(player, list(users.keys()))
-            print(loser)
+            loser = bunny.game(player, list(users.keys()))            
             for lose in loser:
                 for user in users:                
                     if(user == lose):
@@ -195,8 +202,6 @@ def main():
         
         if(checkStatus(users)):
             break
-    
-    
     
 if __name__ == "__main__":
     main()
