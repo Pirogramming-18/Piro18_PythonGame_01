@@ -106,6 +106,7 @@ def minigame_guess(p_list):
           #주량에서 -1
           #plist[i].hmcd -= 1
           loser_list.append(p_list[i])
+          break
 
     return loser_list
           
