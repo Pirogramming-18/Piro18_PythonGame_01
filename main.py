@@ -59,9 +59,7 @@ def selectGame(cur, player):
             return True, -1
         try:
             menu = int(input(f"{cur}(이)가 좋아하는 랜덤 게임~ 무슨 게임~? : "))   
-            if(len(player) == 0):
-                continue
-                
+
             if(menu > 5 or menu < 1):
                 raise ValueError
             
