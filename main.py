@@ -169,8 +169,7 @@ def main():
         if(menuNum == 1):
             paik.game(player, users)
         elif(menuNum == 2):
-            loser = bunny.game(player, list(users.keys()))
-            print(loser)
+            loser = bunny.game(player, list(users.keys()))            
             for lose in loser:
                 for user in users:                
                     if(user == lose):

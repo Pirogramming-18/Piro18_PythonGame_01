@@ -9,21 +9,21 @@ def carrot(user):          #"당근당근" 외치는 함수 설정
     global flag
     global loser
     _percentage = random.randrange(1,101)
-    if (_percentage <= 1):         #성공할 확률
+    if (_percentage <= 80):         #성공할 확률
         print(f"({player[user]}) : ㄴ당근ㄱ ㄴ당근ㄱ")   #실수하지 않은 경우
     else:
         flag = 1
         print(f"({player[user]}): 다....ㅇ근 당..")     #실수(탈락)한 경우
         loser.append(player[user])
             
-    
 def naega():               # 사용자가 바니바니를 외칠때의 함수
     global player
     global name
     global ind
-    asd = input(f"내차례! 누구에게 바니바니?? -> ({player[0]} , {player[1]} , {player[2]} , {player[3]}) :")    #바니바니 지목할 사람 고르기
+    
     while True:
-        if asd!= player[0] or player[1] or player[2] or player[3]:
+        asd = input(f"내차례! 누구에게 바니바니?? -> ({player[0]} , {player[1]} , {player[2]} , {player[3]}) :")    #바니바니 지목할 사람 고르기
+        if asd not in player:
             print("누구세요 ??")
             continue
         else: 
@@ -46,8 +46,6 @@ def com_bnbn():              # 지목을 사용자가 아닌 플레이어가 받
     global ind
     global player
     ran = random.randrange(0,4)     
-    print(ind)
-    print(player)
     print(f'"({player[ind]}): 바니바니, ({player[ran]}에게) :바니바니"')
     
     left = ran - 1 if ran-1 >= 0 else 3     
@@ -71,7 +69,6 @@ def game(userName, playerBunny):
     global name 
     global player
     player = playerBunny
-    print(player)
     ind = random.randrange(0,4)
     name = userName
     while True:
@@ -87,7 +84,7 @@ def game(userName, playerBunny):
                 print("누↘가↗ 술을 마셔~~~"+i +"(이)가 술을 마셔~ 쭉!! 쭉쭉! 쭉쭉~! ")
                 
             return loser
-            break
+            
         else:
             continue
         

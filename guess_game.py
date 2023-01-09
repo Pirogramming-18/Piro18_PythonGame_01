@@ -50,7 +50,6 @@ def minigame_guess(cur, p_list):
     num = randrange(1, 10, 1)
     user = cur
     shuffle(p_list)
-    print("p_list", p_list)
 
     #사용자 실행
     while True:
