@@ -70,6 +70,8 @@ def game31End(card_sum31, entry):
 
 
 
+
+
 def game31 (entry, player31): #참가자 명단
   
   game31Intro()

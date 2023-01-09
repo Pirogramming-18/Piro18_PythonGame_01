@@ -22,6 +22,7 @@ def naega():               # 사용자가 바니바니를 외칠때의 함수
     global name
     global ind
     asd = input(f"내차례! 누구에게 바니바니?? -> ({player[0]} , {player[1]} , {player[2]} , {player[3]}) :")    #바니바니 지목할 사람 고르기
+    
     while True:
         if asd!= player[0] or player[1] or player[2] or player[3]:
             print("누구세요 ??")
