@@ -11,7 +11,6 @@ def grape_game(dictionary_player, user):
     # 포도가 5알이 되면 다같이 다먹었네
     list_player = list(dictionary_player.keys())
     random.shuffle(list_player)
-    print(list_player)  # 삭제
     n = len(list_player)
     player = []
     print('🍇포도 게임~~ 포도 게임~~ 🍇')

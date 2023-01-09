@@ -58,7 +58,9 @@ def com_bnbn():              # 지목을 사용자가 아닌 플레이어가 받
 
     
 def game(userName, playerBunny):
-    
+    if len(playerBunny) != 4:
+        print("친구가 없는 당신!!! 다 같이 한 잔~~!!🍻🍻")
+        return playerBunny
     sleep(1)
     print("=====하늘에서 내려온 토끼가 하는 말~=====")
     sleep(1)
