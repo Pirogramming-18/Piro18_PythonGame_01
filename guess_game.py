@@ -36,17 +36,18 @@ def Intro2():
     print('게임 방법! : 과연 병뚜껑의 숫자는 무엇일까요?')
     print('step 1: player는 자기 차례에 2번의 기회동안 숫자를 말할 수 있습니다! \n step 2: 다음 차례에 사람에게는 새로운 번호가 주어지고, 만일 맞히지 못한다면 술을 마시고 차례는 다음으로 넘아갑니다\n')
 
-p_list = ['수현','용현','태영','현지']
 user = 'user'
 loser_list = []
 
-def minigame_guess(p_list):
+def minigame_guess(cur, p_list):
     Intro2()
     global loser_list
+    global user
     chance_count = 0
     num = randrange(1, 10, 1)
-
+    user = cur
     shuffle(p_list)
+    print("p_list", p_list)
 
     #사용자 실행
     while True:
@@ -71,6 +72,7 @@ def minigame_guess(p_list):
             print('정답은', num)
             #주량을 -1 해줘야 합니다
             #user[i] -= 1
+            print("user: ", user)
             loser_list.append(user)
             break
 
@@ -81,36 +83,38 @@ def minigame_guess(p_list):
 
     #컴퓨터 실행
     for i in range(len(p_list)):
-      chance_count = 0
-      num = randint(1,10)
-      while True:
-        chance_count += 1
-        c_num = randint(1,10)
-        print('**********************************************************************') 
-        print(p_list[i],'!병뚜껑 숫자는 뭘까요~? (1~10):', c_num)
-        print(p_list[i], '순서, 도전 횟수', chance_count, end=' ')
-        if num == c_num:
-          print(" 정답{}을 맞춘 당신! 와~ 벌주 면제입니다".format(num)) 
+      if p_list[i] != user:
+        chance_count = 0
+        num = randint(1,10)
+        while True:
+          chance_count += 1
+          c_num = randint(1,10)
           print('**********************************************************************') 
-          break
-        elif num < c_num:
-          print("Down")
-        else:
-          print("Up")
-        print("때~앵! 틀렸데여~ ")
+          print(p_list[i],'!병뚜껑 숫자는 뭘까요~? (1~10):', c_num)
+          print(p_list[i], '순서, 도전 횟수', chance_count, end=' ')
+          if num == c_num:
+            print(" 정답{}을 맞춘 당신! 와~ 벌주 면제입니다".format(num)) 
+            print('**********************************************************************') 
+            break
+          elif num < c_num:
+            print("Down")
+          else:
+            print("Up")
+          print("때~앵! 틀렸데여~ ")
 
-        if(chance_count == 2):
-          print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
-          print('정답은', num)
-          print('**********************************************************************') 
-          #주량에서 -1
-          #plist[i].hmcd -= 1
-          loser_list.append(p_list[i])
-          break
+          if(chance_count == 2):
+            print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
+            print('정답은', num)
+            print('**********************************************************************') 
+            #주량에서 -1
+            #plist[i].hmcd -= 1
+            if p_list[i] not in loser_list:
+                loser_list.append(p_list[i])
+            break
 
     return loser_list
           
 
-
-minigame_guess(p_list)  
+if __name__ == "__main__":
+  minigame_guess(p_list)  
 
