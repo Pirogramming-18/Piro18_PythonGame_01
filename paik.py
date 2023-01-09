@@ -3,7 +3,7 @@ import random as r
 from bs4 import BeautifulSoup as bs
 
 #{name : [남은 주량, 치사량]}
-data = {"김용현" : [5, 5], "김고은" : [5, 5], "한수현" : [5, 5], "송현지" : [5, 5], "김태영" : [5, 5]}
+data = {"김용현" : [5, 5], "김고은" : [5, 5], "한수현" : [5, 5], "송현지" : [5, 5]}
 
 
 #단어를 검색하는 함수
@@ -101,5 +101,8 @@ def game(name, users):
             if(users[player][0] < users[player][1]):
                 users[player][0] += 1
             break
+        
+if __name__ == "__main__":
+    game("김용현", data)
 
     

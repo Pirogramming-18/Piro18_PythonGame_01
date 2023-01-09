@@ -82,5 +82,5 @@ def grape_game(dictionary_player, user):
 
     return player[-1]
 
-
-print(grape_game(dictionary, '현지'))
+if __name__ == "__main__":
+    print(grape_game(dictionary, '현지'))

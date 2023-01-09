@@ -186,8 +186,12 @@ def main():
             if(users[loser][0] < users[loser][1]):
                 users[loser][0] += 1        
         elif(menuNum == 5):
-            losers = guess_game.minigame_guess(player, list(users.keys()))
-            print(losers)
+            loser = guess_game.minigame_guess(player, list(users.keys()))
+            for lose in loser:
+                for user in users:                
+                    if(user == lose):
+                        if(users[user][0] < users[user][1]):                    
+                            users[user][0] += 1
         
         if(checkStatus(users)):
             break
