@@ -101,5 +101,8 @@ def game(name, users):
             if(users[player][0] < users[player][1]):
                 users[player][0] += 1
             break
+        
+if(__name__ == "__main__"):
+    game("김용현", data)
 
     
