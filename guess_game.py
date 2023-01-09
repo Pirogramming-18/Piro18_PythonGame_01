@@ -13,9 +13,9 @@ def Intro2():
       #게임인트로
     print ('''
     **********************************************************************
-    피로가 좋아하는 랜덤게임!                        
-    무슨 게임 ~ 게임 스타트 ~~ 게임 스타트 ~~ 
-    싸늘하다 가슴에 병뚜껑이 날아와 꽂힌다... "예리미 그 병뚜껑 좀 까봐" ~     
+    피로가 좋아하는 랜덤게임❗                      
+    무슨 게임 ~🎶 게임 스타트 ~~🎶 게임 스타트 ~~ 🎶
+    싸늘하다 가슴에 병뚜껑이 날아와 꽂힌다... "예리미 그 병뚜껑🍾 좀 까봐" ~     
     
                                             ┏━━━━━┓
                                             ┃ 　　 ┃
@@ -23,7 +23,7 @@ def Intro2():
                                             ┗━┛　┃ ┃
                                             　 ┏━┛ ┃
                                             　┃　┏━┛
-      "묻고 더블로 가~ "                     　┗━┛
+      "묻고 더블로 가 🎴 "                     　┗━┛
                                             　┏━┓
                                             　┃　┃
                                               ┗━┛
@@ -33,9 +33,11 @@ def Intro2():
                                                                                               
     **********************************************************************''')
     print('**********************************************************************')
-    print('게임 방법! : 과연 병뚜껑의 숫자는 무엇일까요?')
-    print('step 1: player는 자기 차례에 2번의 기회동안 숫자를 말할 수 있습니다! \n step 2: 다음 차례에 사람에게는 새로운 번호가 주어지고, 만일 맞히지 못한다면 술을 마시고 차례는 다음으로 넘아갑니다\n')
+    print('❗게임 방법❗ : 과연 병뚜껑의 숫자는 무엇일까~요❓')
+    print('step 1: player는 자기 차례에 2번의 기회동안 숫자를 말할 수 있습니다❗ \n step 2: 다음 차례에 사람에게는 새로운 번호가 주어지고, 만일 맞히지 못한다면 술을 마시고 차례는 다음으로 넘아갑니다❗\n')
 
+def outro():
+  print('🍻누~가! 술을 마셔🍻~?~?~?" "(이)가 술을 마셔~ 쭉❗🍺 쭉쭉❗🍺 쭉쭉~❗🍺 아 ❗❗ 원~ 샷~ ❗❗ ") ')
 p_list = ['수현','용현','태영','현지']
 user = 'user'
 loser_list = []
@@ -51,62 +53,61 @@ def minigame_guess(p_list):
     #사용자 실행
     while True:
       print('**********************************************************************') 
-      my_turn = input('병뚜껑 숫자는 뭘까요~? (1~10):' )
+      my_turn = input('병뚜껑 숫자는 뭘까요~❓ (1~10):' )
       if str(my_turn).isdigit(): #조건1 정수를 입력했는가 
         my_turn = int(my_turn)
         if 0 <= my_turn <= 10: # 숫자가 범위를 초과했는가 #조건2
           chance_count += 1
           if num == my_turn:
-            print("와~ 정답{}을 맞춘 당신! 벌주 면제입니다".format(num)) 
+            print("와~ 정답{}을 맞춘 당신❗ 벌주 면제입니다 💯💯".format(num)) 
             break
 
           elif num < my_turn:
             print("Down")
           else:
             print("Up")
-          print("때~앵! 틀렸데여~ 오답 횟수", ':' ,chance_count)
+          print("때~앵❗ 틀렸데여~ 오답 횟수", ':' ,chance_count)
         
           if(chance_count == 2):
-            print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
+            print("땡! 🤪비수를 맞은 당신 나의 벌주를 받아라🤪..:" )
             print('정답은', num)
-            #주량을 -1 해줘야 합니다
-            #user[i] -= 1
             loser_list.append(user)
+            print("🍻누~가! 술을 마셔🍻~?~?~?", user ,"(이)가 술을 마셔~ 쭉❗🍺 쭉쭉❗🍺 쭉쭉~❗🍺 아 ❗❗ 원~ 샷~ ❗❗ ")   
             break
 
         else:
-          print('범위에 맞는 정수를 입력해주세요.', end=' ')
+          print('❗범위오류❗ hoxy 취했나요?🤔 1~10을 입력해주세요', end=' ')
       else:
-          print('정수를 입력해주세요.', end=' ')
+          print('❗정수오류❗ hoxy 취했나요?🤔 정수를 입력해주세요', end=' ')
 
     #컴퓨터 실행
     for i in range(len(p_list)):
-      chance_count = 0
-      num = randint(1,10)
-      while True:
-        chance_count += 1
-        c_num = randint(1,10)
-        print('**********************************************************************') 
-        print(p_list[i],'!병뚜껑 숫자는 뭘까요~? (1~10):', c_num)
-        print(p_list[i], '순서, 도전 횟수', chance_count, end=' ')
-        if num == c_num:
-          print(" 정답{}을 맞춘 당신! 와~ 벌주 면제입니다".format(num)) 
+      if p_list[i] != user:
+        chance_count = 0
+        num = randint(1,10)
+        while True:
+          chance_count += 1
+          c_num = randint(1,10)
           print('**********************************************************************') 
-          break
-        elif num < c_num:
-          print("Down")
-        else:
-          print("Up")
-        print("때~앵! 틀렸데여~ ")
+          print(p_list[i],'❗병뚜껑 숫자는 뭘까요~❓ (1~10):', c_num)
+          print(p_list[i], '순서❗, 도전 횟수', chance_count, end=' ')
+          if num == c_num:
+            print(" ❗정답❗{}을 맞춘 당신, 와~ 벌주 면제입니다 💯💯 ".format(num)) 
+            print('**********************************************************************') 
+            break
+          elif num < c_num:
+            print("Down")
+          else:
+            print("Up")
+          print("때~앵❗ 틀렸데여~ 오답 횟수", ':' ,chance_count)
 
-        if(chance_count == 2):
-          print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
-          print('정답은', num)
-          print('**********************************************************************') 
-          #주량에서 -1
-          #plist[i].hmcd -= 1
-          loser_list.append(p_list[i])
-          break
+          if(chance_count == 2):
+            print("땡! 🤪비수를 맞은 당신 나의 벌주를 받아라🤪..:" )
+            print('정답은❗', num)
+            print('**********************************************************************') 
+            loser_list.append(p_list[i])
+            print("🍻누~가! 술을 마셔🍻~?~?~?", p_list[i] ,"(이)가 술을 마셔~ 쭉❗🍺 쭉쭉❗🍺 쭉쭉~❗🍺 아 ❗❗ 원~ 샷~ ❗❗ ")   
+            break
 
     return loser_list
           
