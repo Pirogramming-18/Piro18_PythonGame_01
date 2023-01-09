@@ -7,6 +7,8 @@ dictionary = {'고은': [7, 7], '용현': [6, 6],
 
 
 def grape_game(dictionary_player, user):
+    # 게임 참여자는 돌아가면서 포도를 한알, 두알, 세알을 먹거나 빼야한다.
+    # 포도가 5알이 되면
     list_player = list(dictionary_player.keys())
     random.shuffle(list_player)
     print(list_player)  # 삭제
@@ -26,14 +28,14 @@ def grape_game(dictionary_player, user):
                         grape = int(grape)
                         break
                     else:
-                        print('다시 입력하세요')
+                        print('다시 입력하세요-', end='')
 
                 while True:
                     eat = input('먹고 빼고 중에 선택하세요 : ')
                     if eat == '먹고' or eat == '빼고':
                         break
                     else:
-                        print("다시 입력하세요")
+                        print("다시 입력하세요-", end='')
 
                 if eat == '먹고':
                     grape_current += grape
