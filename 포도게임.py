@@ -8,7 +8,7 @@ dictionary = {'고은': [7, 7], '용현': [6, 6],
 
 def grape_game(dictionary_player, user):
     # 게임 참여자는 돌아가면서 포도를 한알, 두알, 세알을 먹거나 빼야한다.
-    # 포도가 5알이 되면
+    # 포도가 5알이 되면 다같이 다먹었네
     list_player = list(dictionary_player.keys())
     random.shuffle(list_player)
     print(list_player)  # 삭제
@@ -31,7 +31,7 @@ def grape_game(dictionary_player, user):
                         print('다시 입력하세요-', end='')
 
                 while True:
-                    eat = input('먹고 빼고 중에 선택하세요 : ')
+                    eat = input('먹고 빼고 중에 선택하세요(먹고, 빼고 중 선택): ')
                     if eat == '먹고' or eat == '빼고':
                         break
                     else:
@@ -55,10 +55,10 @@ def grape_game(dictionary_player, user):
             if grape_current == 5:
                 if list_player[i] == user:
                     print(
-                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} {grape_current}")  # grape_current 삭제
+                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} ")  # grape_current 삭제
                 else:
                     print(
-                        f"{list_player[i]}  : 포도 {grape}알 {eat} {grape_current}")  # grape_current 삭제
+                        f"{list_player[i]}  : 포도 {grape}알 {eat} ")  # grape_current 삭제
                 print("다먹었네")
                 player.append(list_player[i])
                 grape_current = 0
@@ -66,10 +66,10 @@ def grape_game(dictionary_player, user):
             else:
                 if list_player[i] == user:
                     print(
-                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} {grape_current}")  # grape_current 삭제
+                        f"{list_player[i]} (user) : 포도 {grape}알 {eat} ")  # grape_current 삭제
                 else:
                     print(
-                        f"{list_player[i]}  : 포도 {grape}알 {eat} {grape_current}")  # grape_current 삭제
+                        f"{list_player[i]}  : 포도 {grape}알 {eat} ")  # grape_current 삭제
 
                 player.append(list_player[i])
 
