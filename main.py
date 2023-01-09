@@ -39,7 +39,7 @@ def selectAlc():
 # 인원 수를 입력하면 data에서 해당 인원 수 만큼 사람을 뽑음
 # 반환형: 딕셔너리 {name : [마신 잔 수, 치사량, 게임 시작 여부]}
 def selectFriend(player):
-    global data
+    # global data
     while True:
         try:
             num = int(input("오늘 함께 기어갈 친구들은 몇 명이나 필요하신가요~?(최대 3명까지 초대 가능합니다!) : "))
@@ -52,7 +52,8 @@ def selectFriend(player):
                         friends.append(player)
                         users = {}
                         for user in friends:                            
-                            users[user] = data[user]                            
+                            users[user] = data[user]
+                            users[user][1] = random.randrange(2,10,2)                            
                         return users        
                 
         except ValueError:
@@ -64,7 +65,7 @@ def selectGame(cur, player):
     showGameMenu()
     if (cur == player):
         while True:
-            exit = input(f"술게임 진행 중! {cur}님의 턴 입니다! 그만하고 싶으면 \'exit\'을, 계속하고 싶으면 아무키나    입력해 주세요! : ")
+            exit = input(f"술게임 진행 중! {cur}님의 턴 입니다! 그만하고 싶으면 \'exit\'을, 계속하고 싶으면 아무키나 입력해 주세요! : ")
             if(exit == "exit"):
                 return True, -1
             try:
@@ -145,7 +146,7 @@ def showGameMenu():
     print("                        3. 31 게임")
     print("                        4. 포도 게임")
     print("                        5. 병뚜겅 게임")
-    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # 게임 종료 화면
 def showGameOver():
@@ -159,7 +160,7 @@ def showGameOver():
  \_____| \__,_||_| |_| |_| \___|  \____/   \_/   \___||_|   (_)""")
     print("---------------------------------------------------------------------------")
 
-# 메인 실해 함수
+# 메인 실행 함수
 def main():
     intro()
     while True:
@@ -175,6 +176,8 @@ def main():
     
     while True:
         cur = rotateUser(users)        
+        if(checkStatus(users)):
+            break
         exit, menuNum = selectGame(cur, player)
         if(exit):
             print("게임을 종료합니다!")
@@ -189,8 +192,7 @@ def main():
                 for user in users:                
                     if(user == lose):
                         if(users[user][0] < users[user][1]):                    
-                            users[user][0] += 1
-                        
+                            users[user][0] += 1                        
         elif(menuNum == 3):
             loser = game31.game31(list(users.keys()), player)            
             if(users[loser][0] < users[loser][1]):                    
@@ -205,10 +207,7 @@ def main():
                 for user in users:                
                     if(user == lose):
                         if(users[user][0] < users[user][1]):                    
-                            users[user][0] += 1
-        
-        if(checkStatus(users)):
-            break
-    
+                            users[user][0] += 1    
+
 if __name__ == "__main__":
     main()
