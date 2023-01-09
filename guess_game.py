@@ -40,7 +40,6 @@ p_list = ['수현','용현','태영','현지']
 user = 'user'
 
 def minigame_guess(p_list):
-    global drink_Info #주량 정보 
     Intro2()
     chance_count = 0
     num = randrange(1, 10, 1)
@@ -58,6 +57,7 @@ def minigame_guess(p_list):
           if num == my_turn:
             print("와~ 정답{}을 맞춘 당신! 벌주 면제입니다".format(num)) 
             break
+
           elif num < my_turn:
             print("Down")
           else:
@@ -68,7 +68,7 @@ def minigame_guess(p_list):
             print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
             print('정답은', num)
             #주량을 -1 해줘야 합니다
-            # user_count -= 1
+            #user[i].hmcd -= 1
             break
         else:
           print('범위에 맞는 정수를 입력해주세요.', end=' ')
@@ -99,9 +99,9 @@ def minigame_guess(p_list):
           print("땡! 비수를 맞은 당신 나의 벌주를 받아라..:" )
           print('정답은', num)
           print('**********************************************************************') 
-          #주량을 -1 해줘야 합니다
-          # plist[i].count -= 1
-          break
+          #주량에서 -1
+          #plist[i].hmcd -= 1
+          return loser
 
 
 minigame_guess(p_list)         
