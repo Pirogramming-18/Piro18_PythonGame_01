@@ -22,7 +22,13 @@ def naega():               # 사용자가 바니바니를 외칠때의 함수
     global name
     global ind
     asd = input(f"내차례! 누구에게 바니바니?? -> ({player[0]} , {player[1]} , {player[2]} , {player[3]}) :")    #바니바니 지목할 사람 고르기
-    print(f"({name})이 ({asd})에게 : 바니바니")
+    while True:
+        if asd!= player[0] or player[1] or player[2] or player[3]:
+            print("누구세요 ??")
+            continue
+        else: 
+            print(f"({name})이 ({asd})에게 : 바니바니")
+            break
     
     index = player.index(asd)
     
@@ -51,18 +57,7 @@ def com_bnbn():              # 지목을 사용자가 아닌 플레이어가 받
     
     carrot(left)        # 지목당한 양옆사람들이 carrot 함수로 돌아가게 만들어 당근당근 외치게 하기
     carrot(right)
-    
-    
-# if __name__ == '__main__':      #메인 함수    
-#     global name
-#     num=[0,1,2,3,4]
-    
-#     name = input("오늘 거하게 취해볼 당신의 이름은? : ")
-#     me=player.index(name)       # 사용자의 인덱스
-#     del num[me]
-#     qwer = random.randrange(0,4)
-#     del player[num[qwer]]       #5명중 사용자 포함4명 뽑기
-    
+
     
 def game(userName, playerBunny):
     
