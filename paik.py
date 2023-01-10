@@ -96,8 +96,10 @@ def game(name, users):
             print(f"\'{search}\' 에 대한 백종원 레시피가 존재합니다!")   
         else:   #해당 레시피가 존재하지 않는 경우
             print(f"{string} 은(는) 백종원 선생님도 모르는 음식입니다...............")
-            print(f"아 누가 술을 마셔!!! {player}이(가) 술을 마셔~ {player[0]}! 👏 👏 👏 {player[1]}! 👏 👏 👏  원~~~ 샷!!")
-            print("")
+            print(f"아 누가 술을 마셔!!! {player}이(가) 술을 마셔~ ", end="")
+            for i in range(len(player)):
+                print(f"{player[i]}! 👏 👏 👏  ", end="")
+            print("원~~~ 샷!!")
             if(users[player][0] < users[player][1]):
                 users[player][0] += 1
             break
