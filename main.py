@@ -38,7 +38,7 @@ def selectAlc():
 # 친구 선택 함수
 # 인원 수를 입력하면 data에서 해당 인원 수 만큼 사람을 뽑음
 # 반환형: 딕셔너리 {name : [마신 잔 수, 치사량, 게임 시작 여부]}
-def selectFriend(player):
+def selectFriend(player, users):
     # global data
     while True:
         try:
@@ -47,10 +47,10 @@ def selectFriend(player):
                 print("친구는 1~3명까지 초대 가능합니다!")
             else:      
                 while True:
-                    friends = random.sample(list(data.keys()), num)
-                    if(player not in friends):
-                        friends.append(player)
-                        users = {}
+                    friends = random.sample(list(data.keys()), num)   
+                    if player in friends:
+                        continue
+                    else:                
                         for user in friends:                            
                             users[user] = data[user]
                             users[user][1] = random.randrange(2,10,2)                            
@@ -135,7 +135,7 @@ def showAlcMenu(alc):
 def showStatus(users):
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     for user in users:
-        print(f"{user}님은(는) 지금까지 {users[user][0]}잔! 치사량까지 {users[user][1] - users[user][0]}잔!")
+        print(f"🍺{user}님은(는) 지금까지 {users[user][0]}잔! 치사량까지 {users[user][1] - users[user][0]}잔!🍺")
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # 게임 선택 메뉴 화면
@@ -165,14 +165,16 @@ def main():
     intro()
     while True:
         player = input("오늘 거하게 취해볼 당신의 이름은? : ")
-        if(player in list(data.keys())):
-            break
-        else:
+        if(len(player.strip()) == 0):
             print("누구세요??")
+        else:
+            break
+            
     
-    data[player][1] = selectAlc()
-    
-    users = selectFriend(player)
+    alc = selectAlc()
+    users = {}
+    users[player] = [0, alc, True]
+    users = selectFriend(player, users)
     
     while True:
         cur = rotateUser(users)        
